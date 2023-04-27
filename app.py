@@ -3,7 +3,7 @@ import random
 from flask import Flask, render_template, request
 
 # Setup OpenAI API key
-openai.api_key = "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"
+openai.api_key = ""
 
 # Categories
 categories = [
