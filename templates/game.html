@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guessing Game</title>
+</head>
+<body>
+    <h1>Guess the {{ word.lower() }}!</h1>
+    <h2>Category: {{ category }}</h2>
+    {% for clue in clues %}
+        <p>Clue {{ loop.index }}: {{ clue }}</p>
+    {% endfor %}
+    <form method="post">
+        <label for="guess">Guess:</label>
+        <input type="text" id="guess" name="guess"><br><br>
+        <input type="hidden" name="word" value="{{ word }}">
+        <input type="hidden" name="category" value="{{ category }}">
+        <input type="hidden" name="guess_count" value="{{ guess_count }}">
+        <input type="hidden" name="guess_history" value="{{ guess_history }}">
+        <input type="submit" value="Submit Guess">
+    </form>
+    <p>{{ message }}</p>
+</body>
+</html>
