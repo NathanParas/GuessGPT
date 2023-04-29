@@ -19,18 +19,22 @@
         // code to execute When Start Game button is clicked
         if (isset($_POST['catbtn'])){
         
-            $categories=array( "an Animal", "a Food", "a Celebrity", "a Sport","a Brand", "a Movie","a TV Show", "a School Subject", "a Country", "a Color");
+            $categories=array( "Animal", "Food", "Celebrity", "Sport","Brand", "Movie","TV Show", "School Subject", "Tourist Spot", "Religion");
             shuffle($categories);
+            $randomizer = array ("Philippines", "Canada", "America", "UK", "Australia", "Korea");
+            shuffle($randomizer);
             
             $_SESSION['category'] = $categories[0] ;
-            $_SESSION['catTitle'] = '<h2 id="catTitle"> Let me think of ' . $_SESSION['category']  . '...  </h2>';
+            $_SESSION['catTitle'] = '<h2 id="catTitle">  Let me think of ' . $_SESSION['category']  . '...  </h2>';
             hideSelCat();
-            $_SESSION['answer']= askchat("Can you suggest " . $_SESSION['category']. "? Just give me one answer." ,.07,50);
-            $clues= askchat("Suggest 10 short sentences that will serve as clues for someone to guess " . $_SESSION['category']. " " . $_SESSION['answer'] . ". each answer delimited by '/' "  ,.07,2500);
+            $_SESSION['answer']= askchat("I am making a guessing game. Can you suggest a random " . $_SESSION['category']. " from ". $randomizer[0] ."? Just give me one answer." ,.07,50);
+            $clues= askchat("Suggest 10 short sentences that will serve as clues for someone to guess " . $_SESSION['category']. " " . $_SESSION['answer'] . ". No need to put a numbering but each answer is delimited by '/' "  ,.07,2500);
+            #var_dump ($clues);
             $_SESSION['clues']=  explode("/", $clues );
-            $_SESSION['catTitle'] = '<h2 id="catTitle"> Guess ' . $_SESSION['category']  . '</h2>';
-            $_SESSION['clueList']  = "<p> " . $_SESSION['clues'][0] . "</p>";
+            $_SESSION['catTitle'] = '<h2 > The Category is ' . $_SESSION['category']  . '</h2>';
+            $_SESSION['clueList']  = "<p class = 'fade-in-text'> " . $_SESSION['clues'][0] . "</p>";
             $_SESSION['counter'] =1;
+            ingamebuttons ();
         }
         // code to execute When Guess button is clicked
         if (isset($_POST['cluebtn'])){
@@ -38,25 +42,41 @@
             $answer = strtoupper(trim(trim($_SESSION['answer'])));
 
             if ($guess==$answer ) {
-                $_SESSION['result'] = '<h2 id="catTitle"> CORRECT!! The answer is '. $_SESSION['answer'] .'</h2>';
-
+                $_SESSION['result'] = '<h2 > CORRECT!! The answer is '. $_SESSION['answer'] .'</h2>';
+                endgamebuttons();
             } else {
-                $_SESSION['result'] = '<h2 id="catTitle"> Oops! Try again! </h2>';
+                
 
-                if ($_SESSION['counter']<=10) {
+                if ($_SESSION['counter']<10) {
+                    $_SESSION['result'] = '<h2 > Oops! Try again! </h2>';
                     $clues= $_SESSION['clues'];
-                    $_SESSION['clueList']  .= "<p> " . $clues[$_SESSION['counter']] . "</p>";
-                    $_SESSION['counter'] ++;
+                    if ( $_SESSION['counter'] < count($clues)){
+                        $_SESSION['clueList']  .= "<p> " . $clues[$_SESSION['counter']] . "</p>";
+                        $_SESSION['counter'] ++;
+                    }
+                    ingamebuttons ();
                 }
 
-                if ($_SESSION['counter']===11){
-                    $_SESSION['clueList']  .= "<p> Oops! Game Over! The answer is ". trim(trim($_SESSION['answer'])) ."</p>";
+                if ($_SESSION['counter']==10){
+                    $_SESSION['clueList']  .= "<p> Oops! Game Over! </p>";
+                    $_SESSION['result'] = '<h2>The answer is '. trim(trim($_SESSION['answer'])) .'</h2>';
                     $_SESSION['counter'] ++;
+                    endgamebuttons();
                 }
                 
              }
              hideSelCat();
 
+        }
+
+        // code to execute When Guess button is clicked
+        if (isset($_POST['giveup'])){
+            $guess = strtoupper(trim($_POST['guess']));
+            $answer = strtoupper(trim(trim($_SESSION['answer'])));
+            $_SESSION['result'] = '<h2 > Too bad! The answer is '. $_SESSION['answer'] .'</h2>';
+            $_SESSION['counter'] = 11;
+            hideSelCat();
+            endgamebuttons();
         }
 
     }//if post exists
@@ -83,11 +103,17 @@
     function  hideSelCat () {
         echo "<style type='text/css'>#guessDiv{ display:block;}#selcatDIV{ display:none;}</style>";       
     }
+    function  ingamebuttons () {
+        echo "<style type='text/css'>#inGame{ display:block;}#endGame{ display:none;}</style>";       
+    }
+    function  endgamebuttons () {
+        echo "<style type='text/css'>#inGame{ display:none;}#endGame{ display:block;}</style>";       
+    }
 
     //function to ask chatgpt
     function askchat($prompt, $temperature, $max_tokens){
         #echo $prompt;
-        $apiKey = "<ENTER_API_CODE>";
+        $apiKey = "PUT YOUR API";
 
         $model_engine = "text-davinci-003"; // or curie
         $clues ="";
