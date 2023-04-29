@@ -39,13 +39,13 @@ The code uses PHP to implement the game logic and HTML with Bootstrap to create 
 ## Session Variables
 The game uses PHP's session_start() function to create session variables that store data between page loads. The following session variables are used:
 
-$_SESSION['category']: Stores the randomly selected category.
-$_SESSION['catTitle']: Stores the category title.
-$_SESSION['answer']: Stores the answer for the selected category.
-$_SESSION['result']: Stores the result of the user's guess.
-$_SESSION['clues']: Stores the clues for the selected category.
-$_SESSION['clueList']: Stores the list of clues displayed to the user.
-$_SESSION['counter']: Stores the number of guesses the user makes.
+1. $_SESSION['category']: Stores the randomly selected category.
+2. $_SESSION['catTitle']: Stores the category title.
+3. $_SESSION['answer']: Stores the answer for the selected category.
+4. $_SESSION['result']: Stores the result of the user's guess.
+5. $_SESSION['clues']: Stores the clues for the selected category.
+6. $_SESSION['clueList']: Stores the list of clues displayed to the user.
+7. $_SESSION['counter']: Stores the number of guesses the user makes.
 
 ## Functions
 The code includes three functions:
