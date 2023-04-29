@@ -49,9 +49,9 @@ The game uses PHP's session_start() function to create session variables that st
 
 ## Functions
 The code includes three functions:
-`showSelCat(): Displays the "Start Game" button and hides the "Guessing Game" div.
-`hideSelCat(): Hides the "Start Game" button and displays the "Guessing Game" div.
-`askchat(): Sends a prompt to the OpenAI GPT-3 model and returns the model's response.
+*`showSelCat(): Displays the "Start Game" button and hides the "Guessing Game" div.
+*`hideSelCat(): Hides the "Start Game" button and displays the "Guessing Game" div.
+*`askchat(): Sends a prompt to the OpenAI GPT-3 model and returns the model's response.
 
 showSelCat(): Displays the "Start Game" button and hides the "Guessing Game" div.
 hideSelCat(): Hides the "Start Game" button and displays the "Guessing Game" div.
