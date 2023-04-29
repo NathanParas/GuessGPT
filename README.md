@@ -39,28 +39,28 @@ The code uses PHP to implement the game logic and HTML with Bootstrap to create 
 ## Session Variables
 The game uses PHP's session_start() function to create session variables that store data between page loads. The following session variables are used:
 
-1. $_SESSION['category']: Stores the randomly selected category.
-2. $_SESSION['catTitle']: Stores the category title.
-3. $_SESSION['answer']: Stores the answer for the selected category.
-4. $_SESSION['result']: Stores the result of the user's guess.
-5. $_SESSION['clues']: Stores the clues for the selected category.
-6. $_SESSION['clueList']: Stores the list of clues displayed to the user.
-7. $_SESSION['counter']: Stores the number of guesses the user makes.
+* $_SESSION['category']: Stores the randomly selected category.
+* $_SESSION['catTitle']: Stores the category title.
+* $_SESSION['answer']: Stores the answer for the selected category.
+* $_SESSION['result']: Stores the result of the user's guess.
+* $_SESSION['clues']: Stores the clues for the selected category.
+* $_SESSION['clueList']: Stores the list of clues displayed to the user.
+* $_SESSION['counter']: Stores the number of guesses the user makes.
 
 ## Functions
 The code includes three functions:
-*`showSelCat(): Displays the "Start Game" button and hides the "Guessing Game" div.
-*`hideSelCat(): Hides the "Start Game" button and displays the "Guessing Game" div.
-*`askchat(): Sends a prompt to the OpenAI GPT-3 model and returns the model's response.
-
-showSelCat(): Displays the "Start Game" button and hides the "Guessing Game" div.
-hideSelCat(): Hides the "Start Game" button and displays the "Guessing Game" div.
-askchat(): Sends a prompt to the OpenAI GPT-3 model and returns the model's response.
+* `showSelCat(): Displays the "Start Game" button and hides the "Guessing Game" div.
+* `hideSelCat(): Hides the "Start Game" button and displays the "Guessing Game" div.
+* `askchat(): Sends a prompt to the OpenAI GPT-3 model and returns the model's response.
 
 ## Game Logic
-The game logic is implemented using conditional statements that check for POST requests. Once the user hits the "Start Game" button, the game randomly selects a category and asks the OpenAI GPT-3 model to suggest an answer. The game then asks the user to provide ten clues for the category.
-
-When the user makes a guess, the game checks if the guess is correct. The game displays a "CORRECT!" message if the guess is correct. Otherwise, the game provides another clue, and the user can make another guess. If the user has made ten guesses without correctly guessing the category, the game displays an "Oops! Game Over!" message and reveals the correct answer.
+1. The game logic is implemented using conditional statements that check for POST requests. 
+2. Once the user hits the "Start Game" button, the game randomly selects a category and asks the OpenAI GPT-3 model to suggest an answer. 
+3. The game then asks the user to provide ten clues for the category.
+4. When the user makes a guess, the game checks if the guess is correct. 
+5. The game displays a "CORRECT!" message if the guess is correct. 
+6. Otherwise, the game provides another clue, and the user can make another guess. 
+7. If the user has made ten guesses without correctly guessing the category, the game displays an "Oops! Game Over!" message and reveals the correct answer.
 
 
 ## Authors
