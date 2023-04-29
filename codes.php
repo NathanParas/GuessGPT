@@ -69,7 +69,7 @@
 
         }
 
-        // code to execute When Guess button is clicked
+        // code to execute When giveup button is clicked
         if (isset($_POST['giveup'])){
             $guess = strtoupper(trim($_POST['guess']));
             $answer = strtoupper(trim(trim($_SESSION['answer'])));
@@ -79,7 +79,7 @@
             endgamebuttons();
         }
 
-    }//if post exists
+    }//end of if post exists
 
     // code to execute When Start All Over! is clicked
     if(isset($_POST['reset'])) {
@@ -103,9 +103,13 @@
     function  hideSelCat () {
         echo "<style type='text/css'>#guessDiv{ display:block;}#selcatDIV{ display:none;}</style>";       
     }
+
+    //functions to set 'Give Up' and 'Start Over' buttons
     function  ingamebuttons () {
         echo "<style type='text/css'>#inGame{ display:block;}#endGame{ display:none;}</style>";       
     }
+
+    //functions to set 'Give Up' and 'Start Over' buttons
     function  endgamebuttons () {
         echo "<style type='text/css'>#inGame{ display:none;}#endGame{ display:block;}</style>";       
     }
