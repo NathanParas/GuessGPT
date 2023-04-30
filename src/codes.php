@@ -119,7 +119,7 @@
     //function to ask chatgpt
     function askchat($prompt, $temperature, $max_tokens){
         #echo $prompt;
-        $apiKey = "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";
+        $apiKey = "YOUR_API_KEY";
 
         $model_engine = "text-davinci-003"; // or curie
         $clues ="";
