@@ -58,18 +58,22 @@
                 }
 
                 if ($_SESSION['counter']==10){
-                    $_SESSION['clueList']  .= "<p> Oops! Game Over! </p>";
+                    $_SESSION['clueList']  .= "<p style='color:red;'> Oops! Game Over! </p>";
                     $_SESSION['result'] = '<h2>The answer is '. trim(trim($_SESSION['answer'])) .'</h2>';
                     $_SESSION['counter'] ++;
                     endgamebuttons();
                 }
+
                 
              }
              hideSelCat();
 
         }
 
-        // code to execute When giveup button is clicked
+
+    
+
+        // code to execute When Guess button is clicked
         if (isset($_POST['giveup'])){
             $guess = strtoupper(trim($_POST['guess']));
             $answer = strtoupper(trim(trim($_SESSION['answer'])));
@@ -79,7 +83,7 @@
             endgamebuttons();
         }
 
-    }//end of if post exists
+    }//if post exists
 
     // code to execute When Start All Over! is clicked
     if(isset($_POST['reset'])) {
@@ -93,6 +97,8 @@
         showSelCat();
         session_unset();
         
+        header("Location: home.php");
+        exit(); 
     }
     // function to show the start message
     function showSelCat() {
@@ -103,13 +109,9 @@
     function  hideSelCat () {
         echo "<style type='text/css'>#guessDiv{ display:block;}#selcatDIV{ display:none;}</style>";       
     }
-
-    //functions to set 'Give Up' and 'Start Over' buttons
     function  ingamebuttons () {
         echo "<style type='text/css'>#inGame{ display:block;}#endGame{ display:none;}</style>";       
     }
-
-    //functions to set 'Give Up' and 'Start Over' buttons
     function  endgamebuttons () {
         echo "<style type='text/css'>#inGame{ display:none;}#endGame{ display:block;}</style>";       
     }
@@ -117,7 +119,7 @@
     //function to ask chatgpt
     function askchat($prompt, $temperature, $max_tokens){
         #echo $prompt;
-        $apiKey = "PUT YOUR API";
+        $apiKey = "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";
 
         $model_engine = "text-davinci-003"; // or curie
         $clues ="";
