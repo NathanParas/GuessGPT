@@ -5,18 +5,55 @@ This simple guessing game uses OpenAI's GPT-3 (ChatGPT) language model to genera
 ## Getting Started
 These instructions will assist you in getting a copy of the project and running it on your local machine for development and testing purposes.
 
-### Prerequisites
-You will need the following software installed:
-* [PHP](https://www.php.net/downloads)
-* A web server like [Apache](https://httpd.apache.org/download.cgi)
+There are 2 ways to run the app in your local machine:
 
-### Installing
-1. Clone this repository into your local machine:
-git clone https://github.com/<your_username>/is215-ChatGPT-guessing-game.git
+1.  Using docker container
+* Prerequisite
+  * [Docker desktop](https://www.docker.com/products/docker-desktop/) is installed.
+* How to run?
+  * Build docker image:
+  ```sh
+  docker build -t guess-gpt .
+  ```
+  * Run the app
+  ```sh
+  docker run -p 80:80 --rm -d guess-gpt
+  ```
+  * Open browser and access http://localhost/index.php
+  
+2. Using your locally installed web server
+* Prerequisite
+  * [PHP](https://www.php.net/downloads)
+  * A web server like [Apache](https://httpd.apache.org/download.cgi)
+* How to run?
+  * Copy the files of `src` directory in your web server's document root.
+  * Start the web server and open the game in your browser.
 
-2. Place the cloned folder in your web server's document root.
+## How to Deploy to EC2 Instance
 
-3. Start the web server and open the game in your browser.
+1. Create an EC2 instance (ensure at least port 80 is allowed to be accessed)
+2. Install `docker` engine on the created EC2 instance. If chosen Machine Image is Amazon Linux, the `scripts/init-server.sh` file
+   can be used to set up everything in that EC2 instance:
+   ```bash
+   ./scripts/init-server.sh path/to/file.pem ec2-user@your-ec2-instance-host.com
+   ```
+3. Update the API Key in `src/codes.php` (`$apiKey = "PUT YOUR API"`) with correct API Key
+4. Once EC2 instance is set, run `scripts/deploy.sh` to deploy and run the application in the EC2 instance.
+   Make sure `application.yaml` is already set with correct credentials and other app-specific configuration:
+   ```bash
+   ./scripts/deploy.sh path/to/file.pem ec2-user@your-ec2-instance-host.com
+   ```
+   Note: the `deploy` command stops a previous version of the code and start another instance with the latest changes in the code.
+
+### Starting and Stopping Application
+- To stop application on local machine or without manually connecting to remote EC2 instance, run the following command:
+   ```bash
+   ./scripts/stop.sh path/to/file.pem ec2-user@your-ec2-instance-host.com
+   ```
+- Similarly, to start the application (only possible if the app was already deployed):
+  ```bash
+  ./scripts/start.sh path/to/file.pem ec2-user@your-ec2-instance-host.com
+  ```
 
 ## How to Play
 1. Click on the "Start Game" button to begin. It will generate a random category and ask the AI (ChatGPT) to suggest ten short sentences as a clue for that category.
