@@ -49,7 +49,7 @@
     </div>
 
     </form>
-
+   
     <form method="post" id="guessDiv">
     <div class="row justify-content-center mb-3">
       <div class="col-md-8">
@@ -63,8 +63,8 @@
     </div>
     <div class="col-md-6">
       <div class="input-group mb-3 d-flex justify-content-center" id="enterGuess">
-        <input type="text" name="guess" class="form-control" placeholder="Enter your guess" aria-label="Enter your guess" aria-describedby="basic-addon2" autofocus style="width: 50%; border-top-left-radius: 100px; border-bottom-left-radius: 100px;">
-        <button class="guess-button" name="cluebtn" type="submit" autofocus style= "border-top-right-radius: 100px; border-bottom-right-radius: 100px;">Enter Guess</button>
+        <input id="guesstext" type="text" name="guess" class="form-control" placeholder="Enter your guess" aria-label="Enter your guess" aria-describedby="basic-addon2" autofocus style="width: 50%; border-top-left-radius: 100px; border-bottom-left-radius: 100px;">
+        <button id= "guessbtn" class="guess-button" name="cluebtn" type="submit" autofocus style= "border-top-right-radius: 100px; border-bottom-right-radius: 100px;">Enter Guess</button>
         </div>  
         <div id="endGame" style="margin-bottom: 10px;">
         <button type="submit" class="game-button" name="reset" id="reset">Start All Over!</button>
