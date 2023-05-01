@@ -239,7 +239,7 @@ body {
   <section class="container">
     <h2>Welcome to the Guessing Game!</h2>
     <p>Are you ready to put your skills to the test?</p>
-    <a href="game.php"><button class="play-button">Let's Play</button></a>
+    <a href="index.php"><button class="play-button">Let's Play</button></a>
   </section>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
