@@ -304,7 +304,32 @@
             .category-column:last-child {
               padding-left: 50px;
             }
+          .loading-spinner{
 
+            position:relative;
+            display:block;
+          }
+          @keyframes spinner {
+            to {transform: rotate(360deg);}
+          }
+          .spinner {
+              min-height:36px;
+          }
+          .spinner:before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            border-top-color: #333;
+            animation: spinner 1s linear infinite;
+          }
 
           </style>
       <title>IS215 A5-Group 4</title>
