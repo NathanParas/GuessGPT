@@ -1,6 +1,6 @@
 <?php 
     session_start();
-
+    $isInSession=False;
     // code to execute When Start All Over! is clicked
     if(isset($_POST['reset'])) {
         $_SESSION['counter'] = 0;
@@ -14,7 +14,7 @@
         header("Location: home.php");
         
         showSelCat();
-        
+        $isInSession=True;
         #unset($_POST['reset']);
         
         exit(); 
@@ -31,6 +31,7 @@
         $_SESSION['result']="";
         $_SESSION['clues']=[]; 
         showSelCat();
+        $isInSession=True;
     }
 
 
@@ -64,7 +65,12 @@
                 $_SESSION['result'] = '<h2 > CORRECT!! The answer is '. $_SESSION['answer'] .'</h2>';
                 endgamebuttons();
             } else {
-                
+                if ($_SESSION['counter']==10){
+                    $_SESSION['clueList']  .= "<p style='color:red;'> Oops! Game Over! </p>";
+                    $_SESSION['result'] = '<h2>The answer is '. trim(trim($_SESSION['answer'])) .'</h2>';
+                    $_SESSION['counter'] ++;
+                    endgamebuttons();
+                }
 
                 if ($_SESSION['counter']<10) {
                     $_SESSION['result'] = '<h2 > Oops! Try again! </h2>';
@@ -76,16 +82,12 @@
                     ingamebuttons ();
                 }
 
-                if ($_SESSION['counter']==10){
-                    $_SESSION['clueList']  .= "<p style='color:red;'> Oops! Game Over! </p>";
-                    $_SESSION['result'] = '<h2>The answer is '. trim(trim($_SESSION['answer'])) .'</h2>';
-                    $_SESSION['counter'] ++;
-                    endgamebuttons();
-                }
+
 
                 
              }
              hideSelCat();
+             $isInSession=True;
 
         }
 
@@ -102,11 +104,12 @@
             $_SESSION['counter'] = 11;
             hideSelCat();
             endgamebuttons();
+            $isInSession=True;
         }
+
 
     }//if post exists
 
-    
     // function to show the start message
     function showSelCat() {
         echo "<style type='text/css'>#guessDiv{ display:none;}#selcatDIV{ display:block;}</style>";        
