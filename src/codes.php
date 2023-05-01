@@ -1,6 +1,25 @@
 <?php 
     session_start();
 
+    // code to execute When Start All Over! is clicked
+    if(isset($_POST['reset'])) {
+        $_SESSION['counter'] = 0;
+        $_SESSION['clueList'] = "";
+        $_SESSION['catTitle']="";
+        $_SESSION['category']="";
+        $_SESSION['answer']= "";
+        $_SESSION['result']="";
+
+        session_unset();
+        header("Location: home.php");
+        
+        showSelCat();
+        
+        #unset($_POST['reset']);
+        
+        exit(); 
+    }
+
     if(!isset($_SESSION['category']) ) {
         
         session_unset();
@@ -73,7 +92,9 @@
 
     
 
-        // code to execute When Guess button is clicked
+        // code to execute When give up button is clicked:
+       
+        
         if (isset($_POST['giveup'])){
             $guess = strtoupper(trim($_POST['guess']));
             $answer = strtoupper(trim(trim($_SESSION['answer'])));
@@ -85,21 +106,7 @@
 
     }//if post exists
 
-    // code to execute When Start All Over! is clicked
-    if(isset($_POST['reset'])) {
-        $_SESSION['counter'] = 0;
-        $_SESSION['clueList'] = "";
-        $_SESSION['catTitle']="";
-        $_SESSION['category']="";
-        $_SESSION['answer']= "";
-        $_SESSION['result']="";
-
-        showSelCat();
-        session_unset();
-        
-        header("Location: home.php");
-        exit(); 
-    }
+    
     // function to show the start message
     function showSelCat() {
         echo "<style type='text/css'>#guessDiv{ display:none;}#selcatDIV{ display:block;}</style>";        
@@ -110,10 +117,11 @@
         echo "<style type='text/css'>#guessDiv{ display:block;}#selcatDIV{ display:none;}</style>";       
     }
     function  ingamebuttons () {
-        echo "<style type='text/css'>#inGame{ display:block;}#endGame{ display:none;}</style>";       
+   
+        echo "<style type='text/css'>#inGame{ display:block;}#endGame{ display:none;}#guessbtn{display:block;}#guesstext{display:block;}</style>";       
     }
     function  endgamebuttons () {
-        echo "<style type='text/css'>#inGame{ display:none;}#endGame{ display:block;}</style>";       
+        echo "<style type='text/css'>#inGame{ display:none;}#endGame{ display:block;}#guessbtn{display:none;}#guesstext{display:none;}</style>";       
     }
 
     //function to ask chatgpt
