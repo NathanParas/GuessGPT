@@ -19,7 +19,7 @@ There are 2 ways to run the app in your local machine:
   ```sh
   docker run -p 80:80 --rm -d guess-gpt
   ```
-  * Open browser and access http://localhost/index.php
+  * Open browser and access http://localhost/home.php
   
 2. Using your locally installed web server
 * Prerequisite
