@@ -21,7 +21,13 @@
   <form method="post" id="selcatDIV" style="padding-top: 100px;">
   <h1>GUESS THE WORD</h1>
   <div class="button-container">
-  <button type="submit" class="game-button" name="catbtn" value="">Start Now!</button>
+  <button type="submit" class="game-button" name="catbtn" value="" id = "catbtn">Start Now!</button>
+    </div>
+    <div class="button-container"  name="divWaitMsg" id="divWaitMsg"> 
+      <p class="game-button">Please wait... </p>
+    </div>
+    <div class="spinner-border m-5" role="status" name="catspinner" id="catspinner" >
+      <span  class="sr-only">|</span>
     </div>
     <br>
     <br>
@@ -49,7 +55,7 @@
     </div>
 
     </form>
-   
+
     <form method="post" id="guessDiv">
     <div class="row justify-content-center mb-3">
       <div class="col-md-8">
@@ -70,13 +76,32 @@
         <button type="submit" class="game-button" name="reset" id="reset">Start All Over!</button>
         </div>
       <div id="inGame" style="margin-bottom: 10px;">
-        <button type="submit" class="giveup-button" name="giveup" id="reset">Give up</button>
+        <button type="submit" class="giveup-button" name="giveup" id="giveup">Give up</button>
     </div>
     </div>
   </div>
 </form>
 
   </div>
+  <script>
+    
+      $(document).ready(function(){
+        $("#catspinner").hide();
+        $("#divWaitMsg").hide();
+        
+      });
+      $("#selcatDIV").submit(
+        function() {
+            //alert("Sending...");
+            
+            //$("#catbtn").html('Please wait...');
+            $("#catbtn").hide();
+            $("#catspinner").show();
+            $("#divWaitMsg").show();
+        }
+      );
+
+  </script>
 
 </body>
 
